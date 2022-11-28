@@ -22,8 +22,6 @@ def get_transactions():
 
     elif request.method == "POST":
         data = request.get_json()
-        print("data", data)
-        print("current_user", current_user)
         id = controller.add_transaction(data, current_user["id"])
         return {"id": id}, 201
 
@@ -42,5 +40,5 @@ def get_transaction(id: int):
         return {"success": True}
 
     elif request.method == "DELETE":
-        controller.delete_product(id)
+        controller.delete_transaction(id)
         return {"success": True}

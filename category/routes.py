@@ -31,6 +31,7 @@ def get_category(id: int):
 
     elif request.method == "PUT":
         data = request.get_json()
+        print("data", data)
         controller.update_category(id, data)
         return {"success": True}
 

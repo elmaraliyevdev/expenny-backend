@@ -12,6 +12,7 @@ class CategoryModel(db.Model):
     description = db.Column(db.String)
     created_date = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    color = db.Column(db.String(80), unique=True, nullable=True)
     # transactions = db.relationship('TransactionModel', backref='category', lazy='dynamic')
 
 

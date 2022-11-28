@@ -35,6 +35,7 @@ def get_category(id: int) -> Dict:
 
 
 def update_category(id: int, data: Dict) -> None:
+    print("data", data)
     category = CategoryModel.query.get_or_404(id)
     update_object_helper.is_request_valid(category, data)
     update_object_helper.update_instance(category, data)

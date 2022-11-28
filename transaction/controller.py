@@ -7,7 +7,7 @@ from util import update_object_helper
 
 
 def get_transactions(user_id: int) -> List[Dict]:
-    transactions = TransactionModel.query.filter_by(user_id=user_id).all()
+    transactions = TransactionModel.query.filter_by(user_id=user_id).order_by(TransactionModel.date_created.asc()).all()
 
     return TransactionSchema(many=True).dump(transactions)
 
@@ -19,7 +19,6 @@ def get_transaction(id: int) -> Dict:
 
 
 def add_transaction(data: Dict, user_id: int) -> int:
-    print("data", data)
     if not data:
         abort(400, description="No data passed in JSON body")
     try:
@@ -43,6 +42,6 @@ def update_transaction(id: int, data: Dict) -> None:
     db_lib.commit()
 
 
-def delete_product(id: int) -> None:
+def delete_transaction(id: int) -> None:
     transaction = TransactionModel.query.get_or_404(id)
     db_lib.delete(transaction)
